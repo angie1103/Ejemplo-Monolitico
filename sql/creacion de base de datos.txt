@@ -1,0 +1,168 @@
+create table persona (
+identificacion varchar(13) not null,
+nombre_uno varchar(15) not null,
+nombre_dos varchar(15),
+apellido_uno varchar(20) not null,
+apellido_dos varchar(20),
+genero varchar(1)not null,
+rh varchar(3)not null,
+calle varchar(10),
+carrera varchar(20),
+zona varchar(6),
+fecha_de_nacimiento date,
+estrata varchar(1),
+eps varchar(12),
+sisben varchar(12),
+primary key (indentificacion)
+);
+create table telefono(
+indentificacion varchar(13) not null,
+telefono varchar(10) not null, 
+primary key(indentificacion,telefono)
+);
+alter table telefono add foreign key(indentificacion) references persona(indentificacion);
+create table estudiante(
+indentificacion varchar(13) not null primary key,
+calendari varchar (1)not null,
+victima_del_conflicto_armado varchar(2)not null,
+Institución_de_Bienestar_de_Origen varchar(15),
+origen_municpio varchar(2),
+origen_departamento varchar(3),
+indentificacion_acudiente varchar(13)  not null,
+id_municipio varchar (3) not null ,
+id_departamento varchar (2) not null,
+id_etnia varchar(1)
+);
+
+create table matricula(
+n_matricula varchar(10) not null primary key,
+fecha_matricula date,
+n_folio varchar(5),
+identificacion varchar(13) not null
+);
+create table capacidad(
+id_capacidad varchar(1) not null primary key,
+nombre varchar(15) not null
+);
+create table discapacidad(
+id_discapacidad varchar(1) not null primary key,
+nombre varchar(15) not null
+);
+create table estudiante_capacidad(
+id_capacidad varchar(1) not null,
+indentificacion varchar(13) not null,
+	primary key (id_capacidad,indentificacion)
+);
+create table estudiante_discapacidad(
+id_discapacidad varchar(1) not null,
+indentificacion varchar(13) not null,
+primary key (id_discapacidad,indentificacion)
+);
+create table etnia(
+id_etnia varchar(1) primary key not null,
+nombre varchar (20)not null	
+);
+create table municipio(
+id_municipio varchar (3) not null ,
+nombre_municipio varchar(20) not null,
+id_departamento varchar (2) not null,
+primary key(id_municipio,id_departamento)
+);
+create table departamento(
+id_departamento varchar (2) not null primary key,
+nombre_departamento varchar(20) not null
+);
+create table acudiente(
+indentificacion varchar(13) primary key not null,
+nombre_uno varchar(15) not null,
+nombre_dos varchar(15),
+apellido_uno varchar(20) not null,
+apellido_dos varchar(20),
+calle varchar(10),
+carrera varchar(20),
+id_parentesco varchar(1) not null
+);
+create table correo(
+indentificacion varchar(13) not null,
+correo varchar(30) not null, 
+primary key(indentificacion,correo)
+);
+create table trabajo(
+id_trabajo varchar(2) not null primary key,
+nombre_trabajo varchar(20) not null
+);
+create table parentesco(
+id_parentesco varchar(1) not null primary key,
+nombre_parentesco varchar(20) not null
+);
+create table acudiente_trabajo(
+id_trabajo varchar(2) not null,
+indentificacion varchar(13) not null,
+primary key(id_trabajo,indentificacion)
+);
+alter table acudiente add foreign key (id_parentesco) references parentesco (id_parentesco);
+alter table acudiente_trabajo add foreign key (indentificacion) references acudiente (indentificacion);
+alter table acudiente_trabajo add foreign key (id_trabajo) references trabajo (id_trabajo);
+alter table estudiante add foreign key (id_etnia) references etnia(id_etnia);
+alter table estudiante add foreign key (indentificacion_acudiente) references acudiente(indentificacion);
+alter table matricula  add foreign key (indentificacion) references estudiante(indentificacion);alter table municipio add foreign key (id_departamento) references departamento(id_departamento);
+alter table estudiante add foreign key (id_departamento,id_municipio) references municipio(id_departamento,id_municipio);
+alter table estudiante add foreign key (origen_departamento,origen_municpio) references municipio(id_departamento,id_municipio);
+
+
+alter table estudiante_capacidad add foreign key (indentificacion) references estudiante(indentificacion);
+alter table estudiante_discapacidad add foreign key (indentificacion) references estudiante(indentificacion);
+alter table estudiante_capacidad add foreign key  (id_capacidad) references capacidad(id_capacidad);
+alter table estudiante_discapacidad add foreign key  (id_discapacidad) references discapacidad(id_discapacidad);
+alter table telefono add foreign key(indentificacion) references acudiente(indentificacion);
+alter table telefono add foreign key(indentificacion) references persona(indentificacion);
+create table profesor(
+indentificacion varchar(13) primary key not null,
+nombre_uno varchar(15) not null,
+nombre_dos varchar(15),
+apellido_uno varchar(20) not null,
+apellido_dos varchar(20),
+calle varchar(10),
+carrera varchar(20)
+);
+alter table profesor add foreign key (indentificacion) references persona(indentificacion);
+create table materias(
+id_materia varchar(1) primary key not null,
+nombre_materia varchar(19) not null
+);
+create table titulo (
+id_titulo varchar(1) primary key not null,
+nombre_titulo varchar(25) not null
+);
+create table nota(
+id SERIAL primary key,
+especificacion varchar(20)
+);
+
+create table notas_estudiante(
+id_nota SERIAL not null ,
+indentificacion varchar(13) not null,
+id_materia varchar(1),
+valor_nota varchar(2),
+	primary key(id_nota,indentificacion,id_materia)
+);
+create table materia_docente(
+indentificacion varchar(13) not null,
+	id_materia varchar(1)  not null,
+	primary key(indentificacion,id_materia)
+);
+create table titulo_docente(
+id_titulo varchar(1) not null,
+indentificacion varchar(13) not null,
+	primary key(indentificacion,id_titulo)
+);
+
+alter table materia_docente add foreign key (indentificacion) references profesor(indentificacion);
+alter table materia_docente add foreign key (id_materia) references materias(id_materia);
+
+alter table titulo_docente add foreign key (id_titulo) references titulo(id_titulo);
+alter table titulo_docente add foreign key (indentificacion) references profesor(indentificacion);
+
+alter table notas_estudiante add foreign key (id_materia) references materias(id_materia);
+alter table notas_estudiante add foreign key (id_nota) references nota(id);
+alter table notas_estudiante add foreign key (indentificacion) references estudiante(indentificacion);

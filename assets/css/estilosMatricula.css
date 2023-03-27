@@ -1,0 +1,66 @@
+/*Css Matricula*/
+input
+{
+    border-radius: 5px;
+    
+}
+.logo
+{
+    justify-content: center;
+    display: flex;
+}
+.logo img
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 150px;
+}
+body main{
+    max-width: 1500px;
+}
+ol{
+    align-items:baseline;
+    display: inline-flex;
+    padding: 5px;
+    margin: 10px;
+    position: relative;
+    justify-content: center;
+    flex-direction: column;
+}
+.logo img
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 150px;
+}
+h2
+{
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Times New Roman';
+}
+h3{
+    border-radius: 5px;
+    background-color: #abccab;
+    text-align: center;
+    padding: 10px;
+}
+h5
+{
+    text-align: center;
+    font-weight: normal;
+}
+select
+{
+    border-radius: 5px;
+}
+.padre{
+    
+    margin: 50px;
+    margin-top: 50px;
+}
+
+.texto
+{
+    max-width: 80vh;
+}

@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    min-height: 100hv;
+    background: #383f52;
+}
+
+::section{
+    color: white;
+    background: #383f52;
+}
+
+.general{
+    width: 430px;
+    background: white;
+    border-radius: 5px;
+    padding: 30px;
+    box-shadow: 7px 7px 12px rgba(0, 0, 0, 0.05);
+    height: 450px;
+    margin-top: 20%;
+}
+
+.general header{
+    color: #6990f2;
+    font-size: 27px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.general form{
+    height: 167px;
+    display: flex;
+    cursor: pointer;
+    margin: 30px 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 2px dashed #6990f2;
+}
+
+
+#area-proceso{
+    display: none;
+    font-size: 16px;
+    color: #6990f2;
+    justify-content: center;
+}
+
+form :where(i,p){
+ color: #6990f2;
+}
+form i{
+    font-size: 50px;
+}
+form p{
+    margin-top: 15px;
+    font-size: 16px;
+}
+section .row i{
+    color: #6990f2;
+    font-size: 30px;
+}
+
+section .detalles span{
+    font-size: 14px;
+}
+.area-subida{
+    max-height: 232px;
+    overflow-y: scroll;
+}
+
+

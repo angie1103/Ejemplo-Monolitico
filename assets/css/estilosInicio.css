@@ -1,0 +1,7 @@
+body .imgLogo
+{
+    display: flex;
+    justify-content: center;
+    min-height: 10px;
+
+}
